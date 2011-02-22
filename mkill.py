@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser(description="MySQL Kill thread wrapper tool.")
 parser.add_argument("-u", type=str, required=True, metavar="USER", \
         dest="username", help="String. User name for log in.")
 
+# TODO: hide password string to ps result.
 parser.add_argument("-p", type=str, metavar="PASSWORD", default=None, \
         dest="password", help="String. User password for log in.")
 
@@ -38,7 +39,8 @@ parser.add_argument("--no-schema", action="store_true", default=False, \
             "over none schema."))
 
 parser.add_argument("-t", type=int, nargs="*", default=None, metavar="ID", \
-        dest="threadids", help="Integer. Specific thread IDs to kill.")
+        dest="threadids", help="Integer. Specific thread IDs to kill; if " + \
+            "given, other filter will be ignored.")
 
 def main(args):
     try:
