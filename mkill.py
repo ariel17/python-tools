@@ -38,6 +38,11 @@ parser.add_argument("--no-schema", action="store_true", default=False, \
         dest="noschema", help=("String. Marks for kill all threads running " + \
             "over none schema."))
 
+parser.add_argument("-l", type=int, default=None, metavar="SECONDS", \
+        dest="seconds", help=("Integer. Time limit in seconds for " + \
+            "execution. All queries with running time greater than this " + \
+                "limit will be killed."))
+
 parser.add_argument("-t", type=int, nargs="*", default=None, metavar="ID", \
         dest="threadids", help="Integer. Specific thread IDs to kill; if " + \
             "given, other filter will be ignored.")
@@ -70,6 +75,7 @@ def main(args):
             if args.host and host:  
                 filters.append(args.host == host.split(":")[0])
             if args.noschema: filters.append(args.host is None)
+            if args.seconds:  filters.append(time > args.seconds)
             if len(filters) and all(filters): 
                 c.execute(query % id)
                 count += 1
