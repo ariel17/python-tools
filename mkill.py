@@ -46,10 +46,10 @@ def main(args):
     except MySQLdb.OperationalError, (errno, desc):
         print """Error %d connecting to host: "%s".""" % (errno, desc)
         return 1
-
     c = conn.cursor()
     query = "KILL %s %%d" % args.modifier
     count = 0
+    # if specific thread ids are given, none other filter must be applied.
     if args.threadids:
         for id in args.threadids:
             try:
@@ -58,9 +58,9 @@ def main(args):
             except MySQLdb.OperationalError, (errno, desc):
                 print """Error %d for thread id %d: "%s".""" % (errno, id, desc)
     else:
+        # must apply filters to the process list.
         c.execute("SHOW PROCESSLIST")
-        rows = c.fetchall()
-        for row in rows:
+        for row in c.fetchall():
             (id, user, host, db, command, time, state, info) = row
             filters = []
             if args.user:     filters.append(args.user == user)
