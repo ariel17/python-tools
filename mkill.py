@@ -1,5 +1,13 @@
 #!/usr/bin/python
 
+"""
+MySQL Kill thread wrapper tool.
+
+This script connects to an indicated MySQL server and tries to run a KILL query 
+for all given thread ids.
+"""
+
+
 import argparse
 import getpass
 import MySQLdb
