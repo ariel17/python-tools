@@ -19,4 +19,4 @@ URLS = (
     )
 
 for url in URLS:
-    urllib.request.urlopen("http://%s%s" % (GATEWAY, url)).read()
+    urllib.request.urlopen("http://%s%s" % (GATEWAY_IP, url)).read()
