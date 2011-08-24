@@ -6,8 +6,8 @@ Auto-dial script for DSL modem model Huawei SmartAX MT882.
 """
 
 CREDENTIALS = { # granted by ISP
-    'MacWanUsrName': 'username', 
-    'MacWanPasswd': 'password',
+    'MacWanUsrName': '44638503@speedy', 
+    'MacWanPasswd': '30021332',
     }
 
 GATEWAY_IP = '10.0.0.2'
