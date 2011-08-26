@@ -1,5 +1,11 @@
-import urllib.request as request
-from urllib.parse import urlencode
+from sys import platform
+
+if 'linux' in platform:
+    from urllib import urlencode
+    import urllib2 as request
+else:
+    import urllib.request as request
+    from urllib.parse import urlencode
 
 """
 Auto-dial script for DSL modem model Huawei SmartAX MT882.
@@ -18,5 +24,8 @@ URLS = (
     '/GenMainPage?id=20&ex_param1=17',
     )
 
+
+print "Requesting connection..."
 for url in URLS:
     request.urlopen("http://%s%s" % (GATEWAY_IP, url)).read()
+print "Done!"
