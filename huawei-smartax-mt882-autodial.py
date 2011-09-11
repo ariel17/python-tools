@@ -1,11 +1,7 @@
 from sys import platform
 
-if 'win32' in platform:
-    import urllib.request as request
-    from urllib.parse import urlencode
-else:  # *nix based
-    from urllib import urlencode
-    import urllib2 as request
+from urllib import urlencode
+import urllib2 as request
 
 """
 Auto-dial script for DSL modem model Huawei SmartAX MT882.
