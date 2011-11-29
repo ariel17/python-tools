@@ -42,9 +42,11 @@ if __name__ == '__main__':
         code = ""
         while len(code) < args.length:
             rand_pos = random.randint(0, lang_len - 1)
-            char = LANG[rand_pos]
+            char = args.lang[rand_pos]
             if code and not args.add_consecutives and code[-1] == char:
                 continue
             code += char
-            codes.add(code)
-        print code
+        codes.add(code)
+
+    for a in codes:
+        print a
